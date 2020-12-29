@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+{% block title %}{% if category %}
+{{ category.name }}
+{% else %}Магазин{% endif %}
+{% endblock title%}
+{% block content %}
+{% load static %}
+
+
+
+<!-- ======= Header ======= -->
+<header id="header" class="fixed-top header-inner-pages">
+    <div class="container d-flex align-items-center">
+        <h1 class="logo mr-auto"><a href="#header" class="scrollto">АСТОР МЕДІКАЛ</a></h1>
+        <nav class="nav-menu d-none d-lg-block">
+            <ul>
+                <li><a href="{% url 'home' %}">Головна</a></li>
+                <li><a href="{% url 'about' %}">Про нас</a></li>
+                <li><a href="{% url 'services' %}">Послуги</a></li>
+                <li class="active"><a href="{% url 'product_list' %}">Портфоліо</a></li>
+                <li><a href="{% url 'team' %}">Команда</a></li>
+                <li><a href="{% url 'article_list' %}">Новини</a></li>
+                <li><a href="{% url 'contact' %}">Контакти</a></li>
+
+            </ul>
+        </nav><!-- .nav-menu -->
+
+    </div>
+</header><!-- End Header -->
+
+<main id="main">
+
+ <!-- ======= Breadcrumbs ======= -->
+    <section id="breadcrumbs" class="breadcrumbs">
+        <div class="container">
+
+            <ol>
+                <li><a href="{% url 'home' %}">Головна</a></li>
+                <li>Магазин</li>
+            </ol>
+            <h2>Магазин</h2>
+
+        </div>
+    </section><!-- End Breadcrumbs -->
+    <!-- ======= Portfoio Section ======= -->
+
+    <section id="portfolio" class="portfolio">
+        <div class="container aos-init aos-animate" data-aos="fade-up">
+
+            <div class="section-title">
+                <h2>Магазин</h2>
+                <p> {% lorem %}</p>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12 d-flex justify-content-center">
+                    <nav class="nav nav-pills flex-column flex-sm-row">
+                            <a class="nav-link" href="{% url 'product_list' %}">Усі</a>
+                        {% for category in categories %}
+                        {% if category.slug == category.slug %}
+                            <a class="nav-link" href="{{ category.get_absolute_url }}">{{ category.name }}</a>
+           {% endif %}
+                        {% endfor %}
+
+                    </nav>
+   <!--                 <ul id="portfolio-filters">
+                        <li data-filter="*"><a href="{% url 'product_list' %}">Усі</a></li>
+                        {% for category in categories %}
+                        {% if category.slug == category.slug %}
+                        <li><a href="{{ category.get_absolute_url }}">{{ category.name }}</a></li>
+                        {% endif %}
+                        {% endfor %}
+                    </ul> -->
+                </div>
+            </div>
+
+
+            <div class="row portfolio-container">
+                {% for product in products %}
+
+                <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+                    <img src="{{ product.image.url }}" class="img-fluid" alt="">
+                    <div class="portfolio-info">
+
+                        <a href="{{product.get_absolute_url}}">{{ product.name }}</a>
+                        <br>${{ product.price }}<br>
+                    </div>
+                </div>
+                {% endfor %}
+
+            </div>
+
+
+
+        </div>
+
+    </section>
+</main>
+{% endblock content%}

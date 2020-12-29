@@ -1,0 +1,22 @@
+<div class="blog-pagination" data-aos="fade-up">
+    <ul class="justify-content-center">
+        <li class="disabled"><i class="icofont-rounded-left"></i></li>
+         {% if page.has_previous %}
+        <li>
+                    <a href="{{page.previous_page_number}}">Попередня</a>
+
+        </li>
+          {% endif %}
+        <li class="active">{{ page.number }}
+        </li>
+         {% if page.has_next %}
+        <li>
+
+            <a href="?page={{ page.next_page_number }}">Наступна
+            <i class="icofont-rounded-right>"></i></a>
+
+        </li>
+
+ {% endif %}
+        </ul>
+</div>

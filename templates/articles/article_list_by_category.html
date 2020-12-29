@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+{% block title %}Новини{% endblock title %}
+{% block content %}
+{% load static %}
+
+
+<!-- ======= Header ======= -->
+<header id="header" class="fixed-top header-inner-pages">
+    <div class="container d-flex align-items-center">
+
+        <h1 class="logo mr-auto"><a href="{% url 'home' %}" class="scrollto">АСТОР МЕДІКАЛ</a></h1>
+        <!-- Uncomment below if you prefer to use an image logo -->
+        <!-- <a href="#header" class="logo mr-auto scrollto"><img src="static/img/logo.png" alt="" class="img-fluid"></a>-->
+
+        <nav class="nav-menu d-none d-lg-block">
+            <ul>
+                <li><a href="{% url 'home' %}">Головна</a></li>
+                <li><a href="{% url 'about' %}">Про нас</a></li>
+                <li><a href="{% url 'services' %}">Послуги</a></li>
+                <li><a href="{% url 'product_list' %}">Портфоліо</a></li>
+                <li><a href="{% url 'team' %}">Команда</a></li>
+                <li class="active"><a href="{% url 'article_list' %}">Новини</a></li>
+                <li><a href="{% url 'contact' %}">Контакти</a></li>
+
+            </ul>
+        </nav><!-- .nav-menu -->
+
+    </div>
+</header><!-- End Header -->
+
+<main id="main">
+
+    <!-- ======= Breadcrumbs ======= -->
+    <section id="breadcrumbs" class="breadcrumbs">
+        <div class="container">
+
+            <ol>
+                <li><a href="{% url 'home' %}">Головна</a></li>
+                <li>Новини</li>
+            </ol>
+            <h2>{{category.name}}</h2>
+
+        </div>
+    </section><!-- End Breadcrumbs -->
+
+    <section id="blog" class="blog">
+
+        <div class="container">
+
+             <div class="row">
+
+{% for article in articles %}
+
+
+                  <div class="col-lg-4  col-md-6 d-flex align-items-stretch" data-aos="fade-up">
+                     <article class="entry">
+                        <div class="entry-img">
+                            <img src="{{article.image.url}}" alt="" class="img-fluid">
+                        </div>
+
+                         <h2 class="entry-title">
+                             <a href="{{ article.get_absolute_url }}">{{ article.title}}</a>
+                         </h2>
+
+                        <div class="entry-meta">
+                           <ul>
+                            <li class="d-flex align-items-center"><i class="icofont-user"></i>
+                                <a href="{{ article.get_absolute_url }}">{{ article.author }}</a></li>
+                            <li class="d-flex align-items-center"><i class="icofont-wall-clock"></i>
+                                <a href="{{ article.get_absolute_url }}"><time>{{ article.publish }}</time></a></li>
+                             </ul>
+                         </div>
+
+                         <div class="entry-content">
+                             <p>{{ article.body|truncatewords:30|linebreaks }}</p>
+                                <div class="read-more">
+                                 <a href="{{ article.get_absolute_url }}">Детальніше</a>
+                                 </div>
+                         </div>
+
+                </article>
+                 </div>
+{% endfor %}
+                </div>
+        </div>
+    </section>
+
+
+
+    </main>
+{% endblock content%}

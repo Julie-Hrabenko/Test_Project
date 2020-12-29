@@ -1,0 +1,177 @@
+{% extends 'base.html' %}
+{% block title %}{{ article.title }}{% endblock title %}
+{% block content %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+
+<!-- ======= Header ======= -->
+<header id="header" class="fixed-top header-inner-pages">
+    <div class="container d-flex align-items-center">
+
+        <h1 class="logo mr-auto"><a href="#header" class="scrollto">АСТОР МЕДІКАЛ</a></h1>
+
+        <nav class="nav-menu d-none d-lg-block">
+            <ul>
+                <li><a href="{% url 'home' %}">Головна</a></li>
+                <li><a href="{% url 'about' %}">Про нас</a></li>
+                <li><a href="{% url 'services' %}#services">Послуги</a></li>
+                <li><a href="{% url 'product_list' %}">Магазин</a></li>
+                <li><a href="{% url 'team' %}">Команда</a></li>
+                <li class="active"><a href="{% url 'article_list' %}">Новини</a></li>
+                <li><a href="{% url 'contact' %}">Контакти</a></li>
+
+            </ul>
+        </nav><!-- .nav-menu -->
+
+    </div>
+</header><!-- End Header -->
+
+<main id="main">
+
+    <!-- ======= Breadcrumbs ======= -->
+    <section id="breadcrumbs" class="breadcrumbs">
+        <div class="container">
+            <ol>
+                <li><a href="{% url 'home' %}">Головна</a></li>
+                <li><a href="{% url 'article_list' %}">Новини</a></li>
+            </ol>
+            <h2>{% lorem 5 w%}</h2>
+
+        </div>
+    </section><!-- End Breadcrumbs -->
+
+    <!-- ======= Blog Section ======= -->
+
+    <section id="blog" class="blog">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 entries">
+                    <article class="entry entry-single">
+                        <div class="entry-img">
+                            <img src="{{article.image.url}}" alt="" class="img-fluid">
+                        </div>
+                        <h2 class="entry-title">
+                            <a href="{{ article.get_absolute_url }}">{{article.title}}</a>
+                        </h2>
+                        <div class="entry-meta">
+                            <ul>
+                                <li class="d-flex align-items-center"><i class="icofont-user"></i>
+                                    <a href="{{ article.get_absolute_url }}">{{article.author}}</a></li>
+                                <li class="d-flex align-items-center"><i class="icofont-wall-clock"></i>
+                                    <a href="{{ article.get_absolute_url }}">
+                                    <time datetime="">{{article.publish}}</time></a></li>
+                                <li class="d-flex align-items-center"><i class="icofont-comment"></i>
+                                    <a href="{{ article.get_absolute_url }}">{% with total=comments.count %}
+                                        {{ total }}
+                                        {% endwith %}</a></li>
+                            </ul>
+                        </div>
+
+                        <div class="entry-content">
+                            <p>{{ article.body|linebreaks}}</p>
+                        </div>
+                    </article>
+
+                    <div class="blog-comments">
+                        <h4 class="comments-count"> {% with comments.count as total_comments %}{{total_comments }}
+                            коментарь {% endwith %}</h4>
+                        <div id="comment-1" class="comment clearfix">
+
+                            {% for comment in comments %}
+                            <h5><a href="">{{comment.name}}</a>
+                                <a href="#" class="reply"><i class="icofont-reply"></i> Відповісти</a></h5>
+                            <time datetime="">{{ comment.publish }}</time>
+                            <p>
+                                {{comment.body|linebreaks}}
+                            </p>
+                                                    {% endfor%}
+                        </div>
+
+
+
+
+                        <div class="reply-form">
+                            <h4> Залишити новий коментар</h4>
+                            <p>Ваша електрона адреса не буде опублікована. Обов'язкові поля відмічені * </p>
+                            <form action="." method="post">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="col-md-6 form-group">
+                                    <input name="name" type="text" class="form-control" placeholder="Ваше ім'я*">
+                                </div>
+                                <div class="col-md-6 form-group">
+                                    <input name="email" type="text" class="form-control"
+                                           placeholder="Ваша елект.адреса*">
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col form-group">
+                                    <textarea name="comment" class="form-control"
+                                              placeholder="Ваш коментар*"></textarea>
+                                </div>
+                            </div>
+
+
+                            <button type="submit" class="btn btn-primary">Розмістити коментар</button>
+
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <!-- End comment #1 -->
+
+
+                <div class="col-lg-4">
+                    <div class="sidebar">
+                        <h3 class="sidebar-title">Пошук</h3>
+                        <div class="sidebar-item search-form">
+                            <form action="{% url 'search' %}" method="GET">
+                                <input name="q" type="text">
+                                <button type="submit"><i class="icofont-search"></i></button>
+                            </form>
+                        </div>
+                        <!-- End sidebar search form-->
+
+
+                        <h3 class="sidebar-title">Категорії</h3>
+                        <div class="sidebar-item categories">
+                            <ul>
+                                {% for category in categories %}
+
+                                {% if category.slug == category.slug %}
+                                <li><a href="{{ category.get_absolute_url }}">{{category.name}} <span></span></a></li>
+                                {% endif %}
+                                {% endfor %}
+
+
+                            </ul>
+
+                        </div><!-- End sidebar categories-->
+
+                        <h3 class="sidebar-title">Останні статті</h3>
+
+
+                        <div class="sidebar-item recent-posts">
+
+                            {% for article in recent_articles %}
+                            <div class="post-item clearfix">
+                                <img src="{{article.image.url}}" alt="">
+                                <h4><a href="{{article.get_absolute_url}}">{{ article.title|truncatewords:5}}</a></h4>
+                                <time datetime="">{{article.publish}}</time>
+                            </div>
+                            {% endfor %}
+                        </div><!-- End sidebar recent posts-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+{% endblock content%}

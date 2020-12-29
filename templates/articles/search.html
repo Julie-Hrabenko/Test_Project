@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+
+
+
+
+    <!-- ======= Header ======= -->
+ <header id="header" class="fixed-top header-inner-pages">
+    <div class="container d-flex align-items-center">
+
+      <h1 class="logo mr-auto"><a href="#header" class="scrollto">АСТОР МЕДІКАЛ</a></h1>
+
+      <nav class="nav-menu d-none d-lg-block">
+        <ul>
+          <li><a href="{% url 'home' %}">Головна</a></li>
+          <li><a href="{% url 'about' %}">Про нас</a></li>
+          <li><a href="{% url 'services' %}">Послуги</a></li>
+          <li><a href="{% url 'product_list' %}">Портфоліо</a></li>
+          <li><a href="{% url 'team' %}">Команда</a></li>
+          <li class="active"><a href="{% url 'article_list' %}">Новини</a></li>
+          <li><a href="{% url 'contact' %}">Контакти</a></li>
+
+        </ul>
+      </nav><!-- .nav-menu -->
+
+    </div>
+  </header><!-- End Header -->
+
+  <main id="main">
+
+    <!-- ======= Breadcrumbs ======= -->
+    <section id="breadcrumbs" class="breadcrumbs">
+      <div class="container">
+        <ol>
+          <li><a href="{% url 'home' %}">Головна</a></li>
+          <li><a href="{% url 'article_list' %}">Новини</a></li>
+        </ol>
+        <h2>Наш девіз</h2>
+
+      </div>
+    </section><!-- End Breadcrumbs -->
+
+
+                <h3>  Результат пошуку {{article_list.count}}
+                </h3>
+
+                    {% for article in article_list %}
+                    <h4><a href="{{ article.get_absolute_url }}">{{ article.title}}</a>
+                    </h4>
+                    {{article.body|truncatewords:5}}
+
+                    {% empty %}
+                    <p> {{ query}} не знайдено </p>
+                    {% endfor %}
+
+
+        </main>
+
+
+ {%endblock%}
+
+
+
+

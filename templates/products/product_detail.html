@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+{% block title %}{{product.name}}{% endblock title %}
+{% block content %}
+{% load static %}
+
+
+
+<!-- ======= Header ======= -->
+<header id="header" class="fixed-top header-inner-pages ">
+    <div class="container d-flex align-items-center">
+
+        <h1 class="logo mr-auto"><a href="#header" class="scrollto">АСТОР МЕДІКАЛ</a></h1>
+        <nav class="nav-menu d-none d-lg-block">
+            <ul>
+                <li><a href="{% url 'home' %}">Головна</a></li>
+                <li><a href="{% url 'about' %}">Про нас</a></li>
+                <li><a href="{% url 'services' %}">Послуги</a></li>
+                <li class="active"><a href="{% url 'product_list' %}">Магазин</a></li>
+                <li><a href="{% url 'team' %}">Команда</a></li>
+                <li><a href="{% url 'article_list' %}">Новини</a></li>
+                <li><a href="{% url 'contact' %}">Контакти</a></li>
+
+            </ul>
+        </nav><!-- .nav-menu -->
+
+    </div>
+</header><!-- End Header -->
+
+<main id="main">
+
+    <!-- ======= Breadcrumbs ======= -->
+    <section id="breadcrumbs" class="breadcrumbs">
+        <div class="container">
+
+            <ol>
+                <li><a href="{% url 'product_list' %}">Магазин</a></li>
+                <li>Деталі</li>
+            </ol>
+            <h2>Деталі про продукцію</h2>
+
+        </div>
+    </section>
+    <!-- End Breadcrumbs -->
+
+    <!-- ======= Portfolio Details Section ======= -->
+    <section id="portfolio-details" class="portfolio-details">
+        <div class="container">
+            <div class="portfolio-details-container">
+                <div class="owl-carousel portfolio-details-carousel owl-loaded owl-drag owl-grab">
+                    <div class="owl-stage-outer">
+                        <div class="owl-stage">
+                            <div class="owl-item cloned">
+                               <img src="{% static 'img/portfolio/portfolio-details-2.jpg'%}" class="img-fluid" alt="">
+                             </div>
+                             <div class="owl-item cloned">
+                               <img src="{% static 'img/portfolio/portfolio-details-3.jpg'%}" class="img-fluid" alt="">
+                             </div>
+                          <div class="owl-item">
+                               <img src="{% static 'img/portfolio/portfolio-details-1.jpg'%}" class="img-fluid" alt="">
+                             </div>
+                        </div>
+                    </div>
+                    <div class="owl-nav disabled">
+                        <button type="button" role="presentation" class="owl-prev"></button>
+                        <span aria-label="Previous"><</span>
+                        </button>
+                        <button type="button" role="presentation" class="owl-next"></button>
+                        <span aria-label="Next">></span>
+                        </button>
+                    </div>
+                </div>
+                <div class="portfolio-info">
+                    <h3>Project information</h3>
+                    <ul>
+                        <li><strong>Price</strong>: ${{ product.price }}</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="portfolio-description">
+                <h2>{{product.name}}</h2>
+                <p> {{ product.description|linebreaks }}
+                </p>
+            </div>
+        </div>
+    </section>
+</main>
+
+{% endblock content%}

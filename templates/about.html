@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+
+
+ <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top header-inner-pages">
+    <div class="container d-flex align-items-center">
+
+      <h1 class="logo mr-auto"><a href="#header" class="scrollto">АСТОР МЕДІКАЛ</a></h1>
+      <!-- Uncomment below if you prefer to use an image logo -->
+      <!-- <a href="#header" class="logo mr-auto scrollto"><img src="static/img/logo.png" alt="" class="img-fluid"></a>-->
+
+      <nav class="nav-menu d-none d-lg-block">
+        <ul>
+          <li><a href="{% url 'home' %}">Головна</a></li>
+          <li class="active"><a href="{% url 'about' %}">Про нас</a></li>
+          <li><a href="{% url 'services' %}">Послуги</a></li>
+          <li><a href="{% url 'product_list' %}">Портфоліо</a></li>
+          <li><a href="{% url 'team' %}">Команда</a></li>
+          <li><a href="{% url 'article_list' %}">Новини</a></li>
+          <li><a href="{% url 'contact' %}">Контакти</a></li>
+
+        </ul>
+      </nav><!-- .nav-menu -->
+
+    </div>
+  </header><!-- End Header -->
+<!-- ======= About Us Section ======= -->
+
+    <section id="about" class="about">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2>Про нас</h2>
+          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+        </div>
+
+        <div class="row content">
+          <div class="col-lg-6">
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+              magna aliqua.
+            </p>
+            <ul>
+              <li><i class="ri-check-double-line"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat</li>
+              <li><i class="ri-check-double-line"></i> Duis aute irure dolor in reprehenderit in voluptate velit</li>
+              <li><i class="ri-check-double-line"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat</li>
+            </ul>
+          </div>
+          <div class="col-lg-6 pt-4 pt-lg-0">
+            <p>
+              Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+              velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+              culpa qui officia deserunt mollit anim id est laborum.
+            </p>
+            <a href="#" class="btn-learn-more">Дізнатися більше</a>
+          </div>
+        </div>
+
+      </div>
+    </section><!-- End About Us Section -->
+<!-- ======= Clients Section ======= -->
+    <section id="clients" class="clients">
+      <div class="container " data-aos="zoom-in">
+
+        <div class="owl-carousel clients-carousel">
+
+            <img src="{% static 'img/clients/client-1.png' %}" alt="">
+            <img src="{% static 'img/clients/client-2.png' %}" alt="">
+            <img src="{% static 'img/clients/client-3.png' %}" alt="">
+            <img src="{% static 'img/clients/client-4.png' %}" alt="">
+            <img src="{% static 'img/clients/client-5.png' %}" alt="">
+            <img src="{% static 'img/clients/client-6.png' %}" alt="">
+            <img src="{% static 'img/clients/client-7.png' %}" alt="">
+            <img src="{% static 'img/clients/client-8.png' %}" alt="">
+          </div>
+        </div>
+
+
+    </section><!-- End Clients Section -->
+
+{% endblock content %}
