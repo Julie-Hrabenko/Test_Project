@@ -6,7 +6,6 @@
 
 
 <main id="main">
-
     <!-- ======= Breadcrumbs ======= -->
     <section id="breadcrumbs" class="breadcrumbs">
         <div class="container">
@@ -15,7 +14,6 @@
                 <li><a href="{% url 'article_list' %}">Новини</a></li>
             </ol>
             <h2>{% lorem 5 w%}</h2>
-
         </div>
     </section><!-- End Breadcrumbs -->
 
@@ -38,7 +36,8 @@
                                     <a href="{{ article.get_absolute_url }}">{{article.author}}</a></li>
                                 <li class="d-flex align-items-center"><i class="icofont-wall-clock"></i>
                                     <a href="{{ article.get_absolute_url }}">
-                                    <time datetime="">{{article.publish}}</time></a></li>
+                                        <time datetime="">{{article.publish}}</time>
+                                    </a></li>
                                 <li class="d-flex align-items-center"><i class="icofont-comment"></i>
                                     <a href="{{ article.get_absolute_url }}">{% with total=comments.count %}
                                         {{ total }}
@@ -63,48 +62,35 @@
                             <p>
                                 {{comment.body|linebreaks}}
                             </p>
-                                                    {% endfor%}
+                            {% endfor%}
                         </div>
-
-
-
-
                         <div class="reply-form">
                             <h4> Залишити новий коментар</h4>
                             <p>Ваша електрона адреса не буде опублікована. Обов'язкові поля відмічені * </p>
                             <form action="." method="post">
-                            {% csrf_token %}
-                            <div class="row">
-                                <div class="col-md-6 form-group">
-                                    <input name="name" type="text" class="form-control" placeholder="Ваше ім'я*">
+                                {% csrf_token %}
+                                <div class="row">
+                                    <div class="col-md-6 form-group">
+                                        <input name="name" type="text" class="form-control" placeholder="Ваше ім'я*">
+                                    </div>
+                                    <div class="col-md-6 form-group">
+                                        <input name="email" type="email" class="form-control"
+                                               placeholder="Ваша елект.адреса*">
+                                    </div>
                                 </div>
-                                <div class="col-md-6 form-group">
-                                    <input name="email" type="email" class="form-control"
-                                           placeholder="Ваша елект.адреса*">
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col form-group">
+                                <div class="row">
+                                    <div class="col form-group">
                                     <textarea name="comment" class="form-control"
                                               placeholder="Ваш коментар*"></textarea>
+                                    </div>
                                 </div>
-                            </div>
-
-
-                            <button type="submit" class="btn btn-primary">Розмістити коментар</button>
-
+                                <button type="submit" class="btn btn-primary">Розмістити коментар</button>
                             </form>
-
                         </div>
                     </div>
                 </div>
 
-
-
                 <!-- End comment #1 -->
-
-
                 <div class="col-lg-4">
                     <div class="sidebar">
                         <h3 class="sidebar-title">Пошук</h3>
@@ -115,28 +101,18 @@
                             </form>
                         </div>
                         <!-- End sidebar search form-->
-
-
                         <h3 class="sidebar-title">Категорії</h3>
                         <div class="sidebar-item categories">
                             <ul>
                                 {% for category in categories %}
-
                                 {% if category.slug == category.slug %}
                                 <li><a href="{{ category.get_absolute_url }}">{{category.name}} <span></span></a></li>
                                 {% endif %}
                                 {% endfor %}
-
-
                             </ul>
-
                         </div><!-- End sidebar categories-->
-
                         <h3 class="sidebar-title">Останні статті</h3>
-
-
                         <div class="sidebar-item recent-posts">
-
                             {% for article in recent_articles %}
                             <div class="post-item clearfix">
                                 <img src="{{article.image.url}}" alt="">

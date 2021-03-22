@@ -3,42 +3,39 @@
 {% load static %}
 
 
-
-
-
-
-  <main id="main">
-
+<main id="main">
     <!-- ======= Breadcrumbs ======= -->
     <section id="breadcrumbs" class="breadcrumbs">
-      <div class="container">
-        <ol>
-          <li><a href="{% url 'home' %}">Головна</a></li>
-          <li><a href="{% url 'article_list' %}">Новини</a></li>
-        </ol>
-        <h2>Наш девіз</h2>
-
-      </div>
+        <div class="container">
+            <ol>
+                <li><a href="{% url 'home' %}">Головна</a></li>
+                <li><a href="{% url 'article_list' %}">Новини</a></li>
+            </ol>
+            <h2>Наш девіз</h2>
+        </div>
     </section><!-- End Breadcrumbs -->
 
-
-                <h3>  Результат пошуку {{article_list.count}}
-                </h3>
-
+    <section id="blog" class="blog">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 entries">
+                    <h3> Результат пошуку {{article_list.count}}
+                    </h3>
                     {% for article in article_list %}
                     <h4><a href="{{ article.get_absolute_url }}">{{ article.title}}</a>
                     </h4>
                     {{article.body|truncatewords:5}}
-
                     {% empty %}
                     <p> {{ query}} не знайдено </p>
                     {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
 
 
-        </main>
-
-
- {%endblock%}
+{%endblock%}
 
 
 

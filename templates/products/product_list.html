@@ -7,73 +7,51 @@
 {% load static %}
 
 
-
 <main id="main">
 
- <!-- ======= Breadcrumbs ======= -->
+    <!-- ======= Breadcrumbs ======= -->
     <section id="breadcrumbs" class="breadcrumbs">
         <div class="container">
-
             <ol>
                 <li><a href="{% url 'home' %}">Головна</a></li>
-                <li>Магазин</li>
+                <li>Товари</li>
             </ol>
             <h2>{{category.name}}</h2>
-
         </div>
     </section><!-- End Breadcrumbs -->
     <!-- ======= Portfoio Section ======= -->
 
     <section id="portfolio" class="portfolio">
         <div class="container aos-init aos-animate" data-aos="fade-up">
-
             <div class="section-title">
                 <h2>Магазин</h2>
                 <p> {% lorem %}</p>
             </div>
-
             <div class="row">
                 <div class="col-lg-12 d-flex justify-content-center">
                     <nav class="nav nav-pills flex-column flex-sm-row">
-                            <a class="nav-link" href="{% url 'product_list' %}">Усі</a>
+                        <a class="nav-link" href="{% url 'product_list' %}">Усі</a>
                         {% for category in categories %}
                         {% if category.slug == category.slug %}
-                            <a class="nav-link" href="{{ category.get_absolute_url }}">{{ category.name }}</a>
-           {% endif %}
+                        <a class="nav-link" href="{{ category.get_absolute_url }}">{{ category.name }}</a>
+                        {% endif %}
                         {% endfor %}
 
                     </nav>
-   <!--                 <ul id="portfolio-filters">
-                        <li data-filter="*"><a href="{% url 'product_list' %}">Усі</a></li>
-                        {% for category in categories %}
-                        {% if category.slug == category.slug %}
-                        <li><a href="{{ category.get_absolute_url }}">{{ category.name }}</a></li>
-                        {% endif %}
-                        {% endfor %}
-                    </ul> -->
                 </div>
             </div>
-
-
             <div class="row portfolio-container">
                 {% for product in products %}
-
                 <div class="col-lg-4 col-md-6 portfolio-item filter-app">
                     <img src="{{ product.image.url }}" class="img-fluid" alt="">
                     <div class="portfolio-info">
-
                         <a href="{{product.get_absolute_url}}">{{ product.name }}</a>
                         <br>${{ product.price }}<br>
                     </div>
                 </div>
                 {% endfor %}
-
             </div>
-
-
-
         </div>
-
     </section>
 </main>
 {% endblock content%}
