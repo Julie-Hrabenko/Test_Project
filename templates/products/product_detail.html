@@ -1,30 +1,9 @@
-{% extends 'base.html' %}
+{%extends "base_menu.html"%}
 {% block title %}{{product.name}}{% endblock title %}
 {% block content %}
 {% load static %}
 
 
-
-<!-- ======= Header ======= -->
-<header id="header" class="fixed-top header-inner-pages ">
-    <div class="container d-flex align-items-center">
-
-        <h1 class="logo mr-auto"><a href="#header" class="scrollto">АСТОР МЕДІКАЛ</a></h1>
-        <nav class="nav-menu d-none d-lg-block">
-            <ul>
-                <li><a href="{% url 'home' %}">Головна</a></li>
-                <li><a href="{% url 'about' %}">Про нас</a></li>
-                <li><a href="{% url 'services' %}">Послуги</a></li>
-                <li class="active"><a href="{% url 'product_list' %}">Магазин</a></li>
-                <li><a href="{% url 'team' %}">Команда</a></li>
-                <li><a href="{% url 'article_list' %}">Новини</a></li>
-                <li><a href="{% url 'contact' %}">Контакти</a></li>
-
-            </ul>
-        </nav><!-- .nav-menu -->
-
-    </div>
-</header><!-- End Header -->
 
 <main id="main">
 
