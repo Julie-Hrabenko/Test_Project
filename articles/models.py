@@ -12,7 +12,7 @@ class PublishedManager(models.Manager):
 class Category(models.Model):
     name = models.CharField(max_length=200, db_index=True)
     objects = models.Manager()
-    slug = models.SlugField(max_length=150, unique=True)  # default=uuid.uuid4
+    slug = models.SlugField(max_length=150, unique=True)
 
     class Meta:
         ordering = ['name']
