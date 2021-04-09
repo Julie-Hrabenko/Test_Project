@@ -1,4 +1,3 @@
-# import uuid
 from django.db import models
 from django.urls import reverse
 
@@ -11,7 +10,7 @@ class PublishedManager(models.Manager):
 class Category(models.Model):
     name = models.CharField(max_length=200, db_index=True)
     objects = models.Manager()
-    slug = models.SlugField(max_length=150, unique=True)  # default=uuid.uuid4
+    slug = models.SlugField(max_length=150, unique=True)
 
     class Meta:
         ordering = ['name']
@@ -26,10 +25,9 @@ class Category(models.Model):
 
 
 class Product(models.Model):
-    # id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     category = models.ForeignKey('Category', null=True, verbose_name='category', on_delete=models.CASCADE)
     name = models.CharField(max_length=255, db_index=True, default='')
-    slug = models.SlugField(max_length=64, unique=True, blank=True)  # default=uuid.uuid4
+    slug = models.SlugField(max_length=64, unique=True, blank=True)
     image = models.ImageField(upload_to='product_image', blank=True)
     description = models.TextField(blank=True)
     price = models.DecimalField(max_digits=6, decimal_places=2)
